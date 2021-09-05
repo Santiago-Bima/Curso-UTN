@@ -1,0 +1,42 @@
+<!-- 
+    Crear el código que dada una distancia determine el medio de transporte apropiado de acuerdo a las siguientes reglas:
+    0 a 1000 metros = pie
+    1000 a 10000 metros = bicicleta
+    10000 a 30000 metros = colectivo
+    30000 a 100000 metros = auto
+    +100000 = avion
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ej1</title>
+</head>
+<body>
+    <script>
+        var x=prompt('quiere ingresar una distancia? ("no" para detener): ');
+        while(x!='no'){
+            var distancia=parseInt(prompt('ingrese una distancia para saber el medio de transporte mas apropiado: '));
+            if(distancia>=0 && distancia<=1000){
+                document.write('<br><br>');
+                document.write('para los '+distancia+'m el medio de transporte mas apropiado es a pie');
+            }else if(distancia>1000 && distancia<=10000){
+                document.write('<br><br>');
+                document.write('para los '+distancia+'m el medio de transporte mas apropiado es a bici');
+            }else if(distancia>10000 && distancia<=30000){
+                document.write('<br><br>');
+                document.write('para los '+distancia+'m el medio de transporte mas apropiado es en metro');
+            }else if(distancia>30000 && distancia<=100000){
+                document.write('<br><br>');
+                document.write('para los '+distancia+'m el medio de transporte mas apropiado es en auto');
+            }else if(distancia>100000){
+                document.write('<br><br>');
+                document.write('para los '+distancia+'m el medio de transporte mas apropiado es por avion');
+            }
+            x=prompt('quiere ingresar otra distancia? ("no" para detener): ');
+        }
+    </script>
+</body>
+</html>

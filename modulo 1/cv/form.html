@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi formulario</title>
+    <link rel="stylesheet" href="estilo.css">
+    <style>
+        h5{
+            padding-bottom: 5px;
+            border-bottom: solid black 2px;
+        }
+        #enviar{
+            list-style: none;
+            position: relative;
+            left: 50px;
+        }
+        ol li{
+           margin: 20px 0 20px 0; 
+        }
+        form{
+            width: 300px;
+            padding: 10px 0;
+            background: radial-gradient( white, lightblue);
+            border: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h2>Hola, este es mi formulario</h2>
+        <h5>completa asi te contacto</h5>
+        <nav>
+            <ul>
+                <li><a href="cv.html">Inicio</a></li>
+                <li><a href="form.html">Form</a></li>
+            </ul>
+        </nav> 
+    </header>
+    <body>
+        <form action="">
+            <ol>
+                <li>
+                    <label for="">Nombre</label>
+                    <br>
+                    <input type="text" placeholder="Usuario">
+                </li>
+                <li>
+                    <label for="">Email</label>
+                    <br>
+                    <input type="email" placeholder="Email">
+                </li>
+                <li>
+                    <label for="">Clave</label>
+                    <br>
+                    <input type="password" placeholder="clave para contactarte">
+                </li>
+                <br>
+                <li id="enviar">
+                    <button type="submit">Enviar</button>
+                </li>
+            </ol>
+        </form> 
+    </body>
+</body>
+</html>

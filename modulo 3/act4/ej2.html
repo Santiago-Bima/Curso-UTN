@@ -1,0 +1,29 @@
+<!-- 
+    Crear el código que reciba como parámetro un array de números y devuelva el mayor. 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ej2</title>
+</head>
+<body>
+    <script>
+        var lista=[];
+        var i=parseInt(prompt('cuantos numeros va a ingresar?: '));
+        for (var j=1; j<=i; j++){
+            lista.push(prompt('ingrese el numero: '));
+        }
+        var mayor=0;
+        for (j=0; j<=lista.length; j++){
+            if (lista[j]>mayor){
+                mayor=lista[j];
+            }
+        }
+        document.write(lista);
+        document.write('<br> el mayor numero es: '+ mayor);
+    </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;    
+}
+#container{
+    display: flex;
+    border: black solid;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.items{
+    display: flex;
+    width: 100px;
+    height: 100px;
+    color: white;
+    justify-content: center;
+    align-items: center;
+}
+.items:first-child{
+    background: red;
+}
+.items:nth-child(2){
+    background-color: blue;
+}
+.items:last-child{
+    background: green;
+}
