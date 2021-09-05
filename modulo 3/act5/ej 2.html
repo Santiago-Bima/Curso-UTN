@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ej2</title>
+</head>
+<body>
+    <textarea name="mensaje" cols="30" rows="10" placeholder="inserte comentario" onkeyup="contarCaracteres(this);"></textarea>
+    <p id="numeroCaract">0 caracteres</p>
+
+    <script>
+        function contarCaracteres(obj){
+            let contador=document.getElementById("numeroCaract");
+            contador.innerHTML = obj.value.length+' caracteres';
+        }
+    </script>
+</body>
+</html>
