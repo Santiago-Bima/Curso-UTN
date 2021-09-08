@@ -62,12 +62,18 @@
 
         ];
         var aprobados=[];
-        for (x of alumnos){
-            if (x.nota>=7){
-                aprobados.push(x);
-            }
-        }
-        // var aprobados=alumnos.nota.filter(nota=>nota<=7);
+        // for (x of alumnos){
+        //     if (x.nota>=7){
+        //         aprobados.push(x);
+        //     }
+        // }
+
+        var aprobados = alumnos.filter(function (alumno) {
+            return alumno.nota >= 7;
+        });
+
+
+        
         console.log(aprobados);
     </script>
 </body>
