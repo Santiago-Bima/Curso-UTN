@@ -1,4 +1,5 @@
 import Nav from './componentes/layout/Nav'
+import Footer from './componentes/layout/Footer'
 import { BrowserRouter as Router, Route} from 'react-router-dom';
 
 function App() {
@@ -11,6 +12,9 @@ function App() {
                 <Route exact path='/'>
 
                 </Route>
+                <footer>
+                    <Footer></Footer>
+                </footer>
             </Router>
         </>
     );
