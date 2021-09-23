@@ -18,7 +18,7 @@ export default class Inicio extends Component {
     
     onSubmit=(event)=>{
         event.preventDefault();
-        this.props.addNew(this.state.nombre, this.state.contenido);
+        this.props.addNew(null, this.state.nombre, this.state.contenido);
     }
 
     onChange = event =>{
@@ -27,7 +27,7 @@ export default class Inicio extends Component {
         });
     }
     
-    StyleCompleted(){
+    StyleTitle(){
         return{
             marginLeft: '50px', 
             textDecoration: 'underline black'     
@@ -38,8 +38,14 @@ export default class Inicio extends Component {
 
         
         let activado=()=>{
-            let valor= this.state.isActive
-            this.setState({isActive: !valor})
+            if(this.state.isActive===false){
+                this.setState({isActive: true})
+            }else{
+                this.setState({
+                    isActive: false,
+                    isActive2: false
+                })
+            }
         }
 
         let activado2=()=>{
@@ -51,7 +57,7 @@ export default class Inicio extends Component {
             <main>
                 <div className="columnas">
                     <section className="novedades">
-                        <h1 className="cursiva"  style={this.StyleCompleted()}>Novedades</h1>
+                        <h1 className="cursiva"  style={this.StyleTitle()}>Novedades</h1>
                         <i className={this.state.isActive?'bx bxs-edit-alt edit activado':'bx bxs-edit-alt edit'} onClick={activado}></i>
                         <i className={this.state.isActive?'bx bxs-message-add addBtn activado':'bx bxs-message-add addBtn'} onClick={activado2}></i>
                         <i className={this.state.isActive?'bx bx-x elimBtn activado':'bx bx-x elimBtn'} onClick={this.props.dNew}></i>
@@ -83,7 +89,7 @@ export default class Inicio extends Component {
                         </form>
                     </div>
                     <section className="destacados">
-                        <h1 className="cursiva" style={this.StyleCompleted()}>Platos Del Día</h1>
+                        <h1 className="cursiva" style={this.StyleTitle()}>Platos Del Día</h1>
                         <div className="productos">
 
                             {this.props.prods.filter(productos=>productos.destacado===true).map(productosFiltrados=>
