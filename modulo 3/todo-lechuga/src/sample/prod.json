@@ -1,0 +1,37 @@
+[
+    {
+        "id": 0,
+        "tipo": "Pastas",
+        "name": "Lasagna",
+        "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore aliquid provident eligendi reiciendis culpa placeat, molestias ad laborum accusamus tenetur amet exercitationem reprehenderit! Ducimus alias tempora ea. A, expedita voluptatum?",
+        "destacado": false
+    },
+    {
+        "id": 1,
+        "tipo": "Hamburguesas",
+        "name": "Hamburguesa de Legumbre",
+        "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore aliquid provident eligendi reiciendis culpa placeat, molestias ad laborum accusamus tenetur amet exercitationem reprehenderit! Ducimus alias tempora ea. A, expedita voluptatum?",
+        "destacado": true
+    },
+    {
+        "id": 2,
+        "tipo": "Pizzas",
+        "name": "Pizza de 4 quesos",
+        "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore aliquid provident eligendi reiciendis culpa placeat, molestias ad laborum accusamus tenetur amet exercitationem reprehenderit! Ducimus alias tempora ea. A, expedita voluptatum?",
+        "destacado": true
+    },
+    {
+        "id": 3,
+        "tipo": "Otros",
+        "name": null,
+        "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore aliquid provident eligendi reiciendis culpa placeat, molestias ad laborum accusamus tenetur amet exercitationem reprehenderit! Ducimus alias tempora ea. A, expedita voluptatum?",
+        "destacado": false
+    },
+    {
+        "id": 4,
+        "tipo": "Otros",
+        "name": null,
+        "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore aliquid provident eligendi reiciendis culpa placeat, molestias ad laborum accusamus tenetur amet exercitationem reprehenderit! Ducimus alias tempora ea. A, expedita voluptatum?",
+        "destacado": true
+    }
+]

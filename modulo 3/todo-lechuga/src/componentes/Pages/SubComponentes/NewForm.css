@@ -1,0 +1,14 @@
+form{
+    display: flex;
+    width: fit-content;
+    height: fit-content;
+    flex-direction: column;
+    padding: 70px;
+    background-color: rgb(36, 33, 53);
+    border-radius: 10px;
+    margin: 20px auto;
+}
+form textarea{
+    margin: 15px 0;
+    min-height: 54.1333px;
+}

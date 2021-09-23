@@ -4,44 +4,8 @@ main{
     width: 960px;
     margin: 0 auto;
 }
-.activo{
-    background-color:rgba(140, 172, 150, 0.562);
-}
 section{
     margin: 35px 20px;
-}
-.menu{
-    position: absolute;
-    left: -380px;
-    background-color: rgb(152, 170, 116);
-    border-radius: 0 0 15px 0;
-    padding: 15px 20px 15px 10px;
-    margin-top: 50px;
-    height: fit-content;
-    min-width: 350px;
-    transition: transform .4s;
-}
-.menu.activado{
-    transform: translateX(380px);
-}
-#flecha{
-    position: relative;
-    right: -369px;
-    top: -94.5px;
-    background-color: rgb(152, 170, 116);
-    padding: 12px 12px 12px;
-    border-radius: 0px 15px 15px 0;
-    width: fit-content;
-}
-.flecha{
-    transition: transform .4s;
-}
-.flecha.activado{
-    transform: rotate(180deg);
-}
-.menu a{
-    text-decoration: none;
-    color: #333;
 }
 .producto{
     display: flex;
@@ -58,30 +22,9 @@ section{
     box-sizing: content-box;
     margin-left: 10px;
 }
-.menu ul{
-    padding-left: 10px;
-}
-.menu ul li{
-    list-style: none;
-}
 
 
 @media only screen and (max-width: 960px) {
-    main{
-        width: 100%;
-        padding: 0;
-    }
-    .menu{
-        max-width: 450px;
-        min-width: 250px;
-        left: -280px;
-    }
-    .menu.activado{
-        transform: translateX(280px);
-    }
-    #flecha{
-        left: 265px;
-    }
     .producto{
         display: block;
         word-wrap: break-word;
@@ -93,9 +36,6 @@ section{
     .columnas{
         display: block;
         width: 100vw;
-    }
-    .menu{
-        margin: 30px auto;
     }
     .destacaos{
         margin: 0 auto;
@@ -125,11 +65,6 @@ section{
     }
 }
 @media only screen and (max-width: 360px) {
-    main{
-        position: relative;
-        top: -50px;
-        z-index: 1;
-    }
     nav ul #links{
         display: flex;
         align-items: center;
@@ -141,17 +76,6 @@ section{
         width: 100vw;
         z-index: 10;
         transition: transform .4s;
-    }
-    .menu{
-        border-radius: 0 0 15px 15px;
-        min-width: auto;
-        z-index: 1;
-        position: relative;
-        top: -80px;
-        left: 0;
-    }
-    #flecha{
-        display: none;
     }
     .producto{
         width: auto;
