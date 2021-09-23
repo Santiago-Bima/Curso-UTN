@@ -78,7 +78,7 @@ export default class Inicio extends Component {
                         </ul>
                     </section>
                     <div className={this.state.isActive2?'alerta activado': 'alerta'}>
-                        <form onSubmit={this.onSubmit}>
+                        <form id='ingresoForm' onSubmit={this.onSubmit}>
                             <input name='nombre' type="text" placeholder='nombre de la noticia' onChange={this.onChange} value={this.state.nombre}/>
                             <br/>
                             <br/>

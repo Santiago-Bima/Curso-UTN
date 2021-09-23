@@ -59,7 +59,7 @@ export default class Menu extends Component {
     left: "260px"}}></i>
                     <i className={this.state.isActive?'addBtn activado':'addBtn'} onClick={activado2}>Añadir Producto</i>
                     <div className={this.state.isActive2?'alerta activado': 'alerta'}>
-                        <form onSubmit={this.onSubmit}>
+                        <form id='ingresoForm' onSubmit={this.onSubmit}>
                             <input name='nombre' type="text" placeholder='nombre de la noticia' onChange={this.onChange} value={this.state.nombre}/>
                             <br/>
                             <br/>
