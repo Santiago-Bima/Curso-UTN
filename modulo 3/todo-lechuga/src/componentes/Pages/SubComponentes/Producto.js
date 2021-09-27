@@ -8,7 +8,7 @@ export default class Producto extends Component {
             <>
                 <div className="producto">
                         <img src="" alt={prod.name}/>
-                        <div  id={prod.name} className="info">
+                        <div  id={slugify(prod.name)} className="info">
                             <h5>{prod.name}
                                 <label htmlFor="destacado" style={{marginLeft: '10px', textDecoration: 'underline black'}} className={this.props.isActive?'activado':'destacado'}>Destacado:</label>
                                 <input name='destacado' className={this.props.isActive?'elim activado':'elim'} type='checkbox' onChange={this.props.cd.bind(this, prod.id)}></input>
