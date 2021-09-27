@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import './style/SobreNosotros.css'
+import local from './img/local.jfif'
+import nosotros from './img/nosotros.jfif'
 
 export default class SobreNosotros extends Component {
     
@@ -15,7 +17,7 @@ export default class SobreNosotros extends Component {
         return (
             <main style={{flexDirection: 'column'}}>
                 <div className="info">
-                    <img className='local' src="img/local.jfif" alt="nuestro local"/>
+                    <img className='local' src={local} alt="nuestro local"/>
                     <h2 className="cursiva"  style={this.StyleCompleted()}>Nuestro local</h2>
                     <p>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem nemo commodi enim error eligendi amet perspiciatis deserunt saepe excepturi velit laboriosam in adipisci aut sed possimus itaque assumenda, omnis quam?, Lorem ipsum dolor, sit amet consectetur adipisicing elit. Excepturi sequi amet odit aperiam tenetur ea deleniti atque provident, cumque quod explicabo quasi possimus consectetur veritatis? 
@@ -25,7 +27,7 @@ export default class SobreNosotros extends Component {
                     </p>
                 </div>
                 <div className="info acercNos">
-                    <img className='nosotros' src="img/nosotros.jfif" alt="Nosotros"/>
+                    <img className='nosotros' src={nosotros} alt="Nosotros"/>
                     <h2 className="cursiva"  style={this.StyleCompleted()}>Acerca de Nosotros</h2>
                     <p>
                         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptates magnam odit molestias cum inventore aspernatur dolor alias exercitationem sint dolorem placeat facilis aliquam, maxime illo necessitatibus ex fugiat. Neque nobis suscipit assumenda, consectetur voluptate ea unde quis minima et nulla minus praesentium ipsum eos exercitationem dolorum maxime enim nihil rerum.

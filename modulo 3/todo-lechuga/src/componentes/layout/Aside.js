@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import './styles/Aside.css';
 
-import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
+import { slugify } from '../../utils';
 
 export default function Aside(props){
 
@@ -21,11 +22,11 @@ export default function Aside(props){
                 <ul>
                     {props.types.map(tipos=>
                         <li className="subindice" key={tipos.id}>
-                            <h4><Link to='/menu' className="linkprod" onClick={activado}>{tipos.tipo}</Link></h4>
+                            <h4><HashLink smooth to={`/menu#${slugify(tipos.tipo)}`} className="linkprod" onClick={activado}>{tipos.tipo}</HashLink></h4>
                             <ul>
                                 {props.prods.filter(producto=>producto.tipo===tipos.tipo).map(productoFiltrado=>
                                     <div key={productoFiltrado.id}>
-                                        <li><Link to='/menu' className='linkprod' onClick={activado}>{productoFiltrado.name}</Link></li>
+                                        <li><HashLink smooth to={`/menu#${slugify(productoFiltrado.name)}`} className='linkprod' onClick={activado}>{productoFiltrado.name}</HashLink></li>
                                     </div>
                                 )}
                             </ul>

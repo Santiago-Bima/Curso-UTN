@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Nav from './componentes/layout/Nav'
 import Footer from './componentes/layout/Footer'
 import Aside from './componentes/layout/Aside';
-import { BrowserRouter as Router, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import products from './sample/prod.json';
 import types from './sample/tipos.json'
 import noticias from './sample/noticias.json'
@@ -115,22 +115,24 @@ class App extends Component {
                     <header>
                         <Nav></Nav>
                     </header>
-                    <Route exact path='/'>
-                        <Inicio prods={this.state.prods} news={this.state.news} addNew={this.add} dNew={this.deleteNew} chDone={this.checkDone} ></Inicio>
-                    </Route>
-                    <Route path='/menu' render={()=>{
-                            return (
-                                <>
-                                    <Aside  prods={this.state.prods} types={this.state.tipos}></Aside>
-                                    <Menu prods={this.state.prods} types={this.state.tipos} addProd={this.add} dProd={this.deleteProd} cd={this.checkDestacado}></Menu>
-                                </>
-                            )
-                        }}>
-                    </Route>
-                    <Route path='/nosotros' component={Nosotros}>
-                    </Route>
-                    <Route path='/contactanos' component={Contactanos}>
-                    </Route>
+                    <Switch>
+                        <Route exact path='/'>
+                            <Inicio prods={this.state.prods} news={this.state.news} addNew={this.add} dNew={this.deleteNew} chDone={this.checkDone} ></Inicio>
+                        </Route>
+                        <Route path='/menu' render={()=>{
+                                return (
+                                    <>
+                                        <Aside  prods={this.state.prods} types={this.state.tipos}></Aside>
+                                        <Menu prods={this.state.prods} types={this.state.tipos} addProd={this.add} dProd={this.deleteProd} cd={this.checkDestacado}></Menu>
+                                    </>
+                                )
+                            }}>
+                        </Route>
+                        <Route path='/nosotros' component={Nosotros}>
+                        </Route>
+                        <Route path='/contactanos' component={Contactanos}>
+                        </Route>
+                    </Switch>
                     <footer>
                         <Footer></Footer>
                     </footer>

@@ -4,6 +4,8 @@ import './style/Menu.css'
 import PropTypes from 'prop-types';
 // import './img'
 
+import { slugify } from '../../utils';
+
 export default class Menu extends Component {
     constructor(props){
         super(props);
@@ -82,7 +84,7 @@ export default class Menu extends Component {
                     <div className="productos">
                         {this.props.types.map(tipos=>
                             <div key={tipos.id}>
-                                <h2  id={tipos.tipo} className="cursiva" style={this.StyleTitle()} key={tipos.id}>{tipos.tipo}</h2>
+                                <h2  id={slugify(tipos.tipo)} className="cursiva" style={this.StyleTitle()} key={tipos.id}>{tipos.tipo}</h2>
                                 {this.props.prods.filter(producto=>producto.tipo===tipos.tipo).map(productoFiltrado=><Producto 
                                     prod={productoFiltrado} 
                                     key={productoFiltrado.id}

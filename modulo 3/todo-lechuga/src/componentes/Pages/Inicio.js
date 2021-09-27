@@ -96,7 +96,7 @@ export default class Inicio extends Component {
                                 <div key={productosFiltrados.id}>
                                     <div className="producto">
                                         <Link to='/menu'>
-                                            <img src="" alt={productosFiltrados.name}/>
+                                            <img src={'./img/'+productosFiltrados.name+'.jfif'} alt={productosFiltrados.name}/>
                                             <div className='info'>
                                                 <h5>{productosFiltrados.name}</h5>
                                                 <p>{productosFiltrados.content}</p>
