@@ -25,16 +25,16 @@
     },
     {
         "id": 3,
-        "tipo": "otros1",
-        "name": null,
+        "tipo": "Otros",
+        "name": "otros1",
         "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore aliquid provident eligendi reiciendis culpa placeat, molestias ad laborum accusamus tenetur amet exercitationem reprehenderit! Ducimus alias tempora ea. A, expedita voluptatum?",
         "destacado": false,
         "posted": true
     },
     {
         "id": 4,
-        "tipo": "otros2",
-        "name": null,
+        "tipo": "Otros",
+        "name": "otros2",
         "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore aliquid provident eligendi reiciendis culpa placeat, molestias ad laborum accusamus tenetur amet exercitationem reprehenderit! Ducimus alias tempora ea. A, expedita voluptatum?",
         "destacado": true,
         "posted": true

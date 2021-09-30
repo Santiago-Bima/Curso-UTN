@@ -7,7 +7,7 @@ export default class Producto extends Component {
         return (
             <>
                 <div className="producto">
-                        <img src="" alt={prod.name}/>
+                        <img src={'/img/'+prod.name+'.jfif'} alt={prod.name}/>
                         <div  id={slugify(prod.name)} className="info">
                             <h5>{prod.name}
                                 <label htmlFor="destacado" style={{marginLeft: '10px', textDecoration: 'underline black'}} className={this.props.isActive?'activado':'destacado'}>Destacado:</label>
