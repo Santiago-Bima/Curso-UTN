@@ -1,78 +1,102 @@
 <style>
-    .inicioNavLink{
-        background-color:rgba(140, 172, 150, 0.562);
+    .inicioNavLink {
+        background-color: rgba(140, 172, 150, 0.562);
     }
 </style>
-    <main>
-        <div class="columnas">
-            <section class="novedades">
-                <h1 class="cursiva"  style="margin-left: 50px; text-decoration: underline black;">Novedades</h1>
-                <ul>
-                    <li>
-                        <div class="noticia">
-                            <h4>Nuevos platos del dia</h4>
-                            <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure doloremque rerum excepturi tempore enim! Autem.
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="noticia">
-                            <h4>Novedades</h4>
-                            <p>
-                                Le damos la bienvenida a las nuevas notificaciones del sitio.
-                                <br>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, quas.
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="noticia">
-                            <h4>Nuevo Sitio</h4>
-                            <p>
-                                Bienvenido a Todo Lechuga!! este es un nuevo local vegetariano/vegano, explora las distintas opciones del menú y avisanos si necesitas algo.
-                            </p>
-                        </div>
-                    </li>
-                </ul>
-            </section>
-            <section class="destacados">
-                <h1 class="cursiva" style="margin-left: 50px; text-decoration: underline black;">Platos Del Día</h1>
-                <di class="productos">
-                    <div class="producto">
-                        <a href="menu#otro">
-                            <img src="/images/otros1.jfif" alt="otros 1">
-                            <div class="infoProd">
-                                <h5>Comida 1</h5>
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore aliquid provident eligendi reiciendis culpa placeat, molestias ad laborum accusamus tenetur amet exercitationem reprehenderit! Ducimus alias tempora ea. A, expedita voluptatum?
-                                </p>
-                            </div>
-                        </a>
+
+<main>
+    <div class="columnas">
+        <section class="novedades">
+            <h1 class="cursiva" style="margin-left: 50px; text-decoration: underline black;">Novedades</h1>
+            {{#if admin}}
+                <i class='bx bxs-message-add addBtn1'></i>
+                <i class='bx bx-x elimBtn'></i> 
+            {{/if}}
+            <ul>
+                <li>
+                    <div class="noticia">
+                        <h4>Nuevos platos del dia</h4>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure doloremque rerum excepturi
+                            tempore enim! Autem.
+                        </p>
                     </div>
-                    <div class="producto">
-                        <a href="menu#otro">
-                            <img src="/images/otros2.jfif" alt="otros 2">
-                            <div class="infoProd">
-                                <h5>Comida 2</h5>
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore aliquid provident eligendi reiciendis culpa placeat, molestias ad laborum accusamus tenetur amet exercitationem reprehenderit! Ducimus alias tempora ea. A, expedita voluptatum?
-                                </p>
-                            </div>
-                        </a>
+                </li>
+                <li>
+                    <div class="noticia">
+                        <h4>Novedades</h4>
+                        <p>
+                            Le damos la bienvenida a las nuevas notificaciones del sitio.
+                            <br>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, quas.
+                        </p>
                     </div>
-                    <div class="producto">
-                        <a href="menu#hamburguesaDeLegumbre">
-                            <img src="/images/Hamburguesas.jfif" alt="Hamburguesas">
-                            <div class="infoProd">
-                                <h5>Hamburguesas</h5>
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore aliquid provident eligendi reiciendis culpa placeat, molestias ad laborum accusamus tenetur amet exercitationem reprehenderit! Ducimus alias tempora ea. A, expedita voluptatum?
-                                </p>
-                            </div>
-                        </a>
+                </li>
+                <li>
+                    <div class="noticia">
+                        <h4>Nuevo Sitio</h4>
+                        <p>
+                            Bienvenido a Todo Lechuga!! este es un nuevo local vegetariano/vegano, explora las distintas
+                            opciones del menú y avisanos si necesitas algo.
+                        </p>
                     </div>
-                </di>
-            </section>
+                </li>
+            </ul>
+        </section>
+        <div class='alerta'>
+            <form id='ingresoForm'>
+                <input name='nombre' type="text" placeholder='nombre de la noticia' />
+                <br />
+                <br />
+                <textarea name='contenido' placeholder='escriba el contenido de la noticia'></textarea>
+                <br />
+                <br />
+                <input type="submit" value="postear noticia" />
+            </form>
         </div>
-    </main>
+        <section class="destacados">
+            <h1 class="cursiva" style="margin-left: 50px; text-decoration: underline black;">Platos Del Día</h1>
+            <di class="productos">
+                <div class="producto">
+                    <a href="menu#otro">
+                        <img src="/images/otros1.jfif" alt="otros 1">
+                        <div class="infoProd">
+                            <h5>Comida 1</h5>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore aliquid provident
+                                eligendi reiciendis culpa placeat, molestias ad laborum accusamus tenetur amet
+                                exercitationem reprehenderit! Ducimus alias tempora ea. A, expedita voluptatum?
+                            </p>
+                        </div>
+                    </a>
+                </div>
+                <div class="producto">
+                    <a href="menu#otro">
+                        <img src="/images/otros2.jfif" alt="otros 2">
+                        <div class="infoProd">
+                            <h5>Comida 2</h5>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore aliquid provident
+                                eligendi reiciendis culpa placeat, molestias ad laborum accusamus tenetur amet
+                                exercitationem reprehenderit! Ducimus alias tempora ea. A, expedita voluptatum?
+                            </p>
+                        </div>
+                    </a>
+                </div>
+                <div class="producto">
+                    <a href="menu#hamburguesaDeLegumbre">
+                        <img src="/images/Hamburguesas.jfif" alt="Hamburguesas">
+                        <div class="infoProd">
+                            <h5>Hamburguesas</h5>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore aliquid provident
+                                eligendi reiciendis culpa placeat, molestias ad laborum accusamus tenetur amet
+                                exercitationem reprehenderit! Ducimus alias tempora ea. A, expedita voluptatum?
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            </di>
+        </section>
+    </div>
+</main>

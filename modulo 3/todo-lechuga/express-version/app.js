@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var session=require('express-session')
 
 var indexRouter = require('./routes/index');
 var menuRouter=require('./routes/menu')
@@ -22,11 +23,46 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+    secret: 'nosequeclavecrear123',
+    resave: false,
+    saveUninitialized: true,
+}))
+
+app.post('/registro', function(req, res){
+    if(req.body.user && req.body.email && req.body.psw ){
+      req.session.user=req.body.user;
+      req.session.email=req.body.email;
+      req.session.psw=req.body.psw;
+      req.session.conocido=true;
+      if(req.body.psw=='Admin123'){
+          req.session.admin=true;
+      }
+    }else{
+      req.session.error1='no se han ingresado todos los actos'
+    }
+    res.redirect('/');
+})
+app.post('/salir', function(req,res){
+    req.session.destroy()
+    res.redirect('/')
+})
 
 app.use('/', indexRouter);
 app.use('/menu', menuRouter);
 app.use('/contactanos', contactanosRouter);
 app.use('/nosotros', nosotrosRouter);
+
+
+// app.get('/ingreso', function(req, res, next){
+//     res.render('ingreso')
+// })
+app.get('/registro', function(req, res, next){
+    res.render('registro')
+})
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

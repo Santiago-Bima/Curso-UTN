@@ -38,6 +38,39 @@
     <main>
         <section class="destacados">
             <h1 class="cursiva" style="margin-left: 50px; text-decoration: underline black;">Platos Del Día</h1>
+            {{#if admin}}
+                <div style='position: relative; left: 200px;'>
+                    <i class='bx bxs-message-add addBtn1'></i>
+                    <i class='bx bx-x elimBtn'></i>
+                </div>
+                <div class='alerta'>
+                        <form id='ingresoForm'>
+                            <input name='nombre' type="text" placeholder='nombre de la noticia'/>
+                            <br/>
+                            <br/>
+                            <select name="tipo"style='marginTop: 15px'>
+                                <option value={''}>Seleccione un tipo de producto</option>
+                                <option value='Pastas'>
+                                    Pastas
+                                </option>
+                                <option value='Hamburguesas'>
+                                    Hamburguesas
+                                </option>
+                                <option value='Pizzas'>
+                                    Pizzas
+                                </option><option value='Otros'>
+                                    Otros
+                                </option>
+                            </select>
+                            <br/>
+                            <br/>
+                            <textarea name='contenido' placeholder='escriba el contenido de la noticia'></textarea>
+                            <br/>
+                            <br/>
+                            <input type="submit" value="postear noticia" />
+                        </form>
+                    </div> 
+            {{/if}}
             <div class="productos">
                 <h2 id="pastas" class="cursiva" style="margin-left: 70px; text-decoration: underline black;">Pastas</h2>
                 <div class="producto">

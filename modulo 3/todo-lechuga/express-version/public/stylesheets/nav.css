@@ -48,6 +48,42 @@ nav ul li{
     display: inline;
 }
 
+.saludo{
+    display: inline;
+    position: absolute;
+    top: 50px;
+    right: 120px;
+    z-index: 100;
+}
+.registro, .ingreso, .salir{
+    position: absolute;
+    margin: 10px;
+    top: 110px;
+    background-color: rgb(164, 238, 171);
+    border-radius: 5px;
+    padding: 5px;
+    border: 1px solid black;
+    z-index: 100;
+    text-decoration: none;
+    color: black;
+}
+.registro, .salir{
+    right: 120px;
+}
+.salir{
+    background-color: rgb(197, 91, 91);
+}
+.salir:hover{
+    background-color: rgb(165, 79, 79);
+}
+/* .ingreso{
+    right: 230px;
+} */
+.registro:hover, .ingreso:hover{
+    background-color: rgb(138, 190, 144);
+}
+
+
 
 
 @media only screen and (max-width: 810px) {

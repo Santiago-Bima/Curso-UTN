@@ -48,11 +48,28 @@
                     </div>
                 </ul>
             </div>
+            <div class="cuenta">
+                {{#if conocido}}
+                    <form action="/salir" method="POST">
+                        <div class="registrado">
+                            <h4 class="saludo">Hola {{usuario}} !!</h4>
+                            <input type='submit' class="salir" value="salir"></input>
+                        </div>
+                    </form>
+                {{/if}}
+                {{#unless conocido}}
+                    {{!-- <a href='/ingreso' class="ingreso">Ingresar</a> --}}
+                    <h4 class="saludo">{{error1}}</h4>
+                    <a href='/registro' class="registro">Registrarse</a>
+                {{/unless}}
+            </div>
         </nav>
         {{{body}}}
+        <footer>
+            <p>Diseñado por Santiago Bima - &copy;año</p>
+        </footer>
+
+        <script src="/javascripts/add.js"></script>
         <script src="/javascripts/aside.js"></script>
     </body>
-    <footer>
-        <p>Diseñado por Santiago Bima - &copy;año</p>
-    </footer>
 </html>

@@ -5,24 +5,16 @@ section{
     margin: 35px 20px;
 }
 .alerta{
+    background-color: steelblue;
+    padding: 15px;
     position: fixed;
     right: 200px;
     z-index: 100;
+    border-radius: 10px;
     display: none;
 }
 .alerta.activado{
     display: initial;
-}
-.edit{
-    position: relative;
-    top: -80px;
-    right: -315px;
-    border-radius: 5px;
-    background-color: beige;
-    padding: 10px;
-}
-.edit:hover{
-    background-color: rgb(238, 238, 221);
 }
 .elim{
     margin-left: 10px;
@@ -33,19 +25,23 @@ section{
     background-color: rgb(238, 97, 97);
     padding: 10px;
     display: none;
+    position: relative;
+    left: 15px;
 }
-.addBtn{
+.addBtn1{
     border-radius: 5px;
     background-color: rgb(169, 238, 129);
     padding: 10px;
     margin-right: 10px;
     display: none;
+    position: relative;
+    left: 15px;
 }
 
 .elimBtn:hover{
     background-color: rgb(211, 102, 102);
 }
-.addBtn:hover{
+.addBtn1:hover{
     background-color: rgb(171, 223, 141);
 }
 .elim.activado{
@@ -54,7 +50,7 @@ section{
 .elimBtn.activado{
     display: inline;
 }
-.addBtn.activado{
+.addBtn1.activado{
     display: inline;
 }
 .novedades{
@@ -62,7 +58,8 @@ section{
     border-radius: 15px;
     padding: 15px 20px 15px 10px;
     margin-top: 50px;
-    height: 520px;
+    height: -moz-max-content;
+    height: fit-content;
     min-width: 350px;
 }
 .producto a{
