@@ -5,10 +5,14 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session=require('express-session')
 
+require('dotenv').config();
+var pool = require('./models/bd');
+
 var indexRouter = require('./routes/index');
-var menuRouter=require('./routes/menu')
+var menuRouter=require('./routes/menu');
 var nosotrosRouter = require('./routes/nosotros');
-var contactanosRouter=require('./routes/contactanos')
+var contactanosRouter=require('./routes/contactanos');
+var loginRouter=require('./routes/login');
 
 var app = express();
 
@@ -39,7 +43,7 @@ app.post('/registro', function(req, res){
           req.session.admin=true;
       }
     }else{
-      req.session.error1='no se han ingresado todos los actos'
+      req.session.error1='no se han ingresado todos los datos'
     }
     res.redirect('/');
 })
@@ -53,10 +57,8 @@ app.use('/menu', menuRouter);
 app.use('/contactanos', contactanosRouter);
 app.use('/nosotros', nosotrosRouter);
 
+app.use('/login', loginRouter);
 
-// app.get('/ingreso', function(req, res, next){
-//     res.render('ingreso')
-// })
 app.get('/registro', function(req, res, next){
     res.render('registro')
 })

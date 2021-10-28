@@ -76,9 +76,9 @@ nav ul li{
 .salir:hover{
     background-color: rgb(165, 79, 79);
 }
-/* .ingreso{
+.ingreso{
     right: 230px;
-} */
+}
 .registro:hover, .ingreso:hover{
     background-color: rgb(138, 190, 144);
 }

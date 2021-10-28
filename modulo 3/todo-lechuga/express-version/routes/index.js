@@ -3,9 +3,10 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { 
+  res.render('index', {
+    layout: 'layout',
     title: 'Todo Lechuga',
-    usuario: req.session.user,
+    usuario: req.session.username,
     conocido: req.session.conocido,
     admin: req.session.admin,
     error1: req.session.error1
