@@ -39,4 +39,7 @@
     <label for="psw">Password: </label>
     <input class='inputFormReg' type="password" name='psw' placeholder="Ingrese la contraseña">
     <button type="submit">Enviar</button>
+    {{#if error}}
+        <p>Ingresó mal los datos</p>
+    {{/if}}
 </form>

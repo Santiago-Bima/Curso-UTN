@@ -6,7 +6,7 @@ router.get('/', function(req, res, next) {
   res.render('index', {
     layout: 'layout',
     title: 'Todo Lechuga',
-    usuario: req.session.username,
+    username: req.session.username,
     conocido: req.session.conocido,
     admin: req.session.admin,
     error1: req.session.error1

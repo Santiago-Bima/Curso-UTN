@@ -33,9 +33,9 @@
 <h1 class="cursiva title_ingreso">Ingreso</h1>
 <form class='formIng' action="/login" method="POST">
     <label for="email">Email: </label>
-    <input class='inputFormIng' type="email" id='email' placeholder="Ingrese el mail" autocomplete='off'>
+    <input class='inputFormIng' type="email" id='email' name='email' placeholder="Ingrese el mail" autocomplete='off'>
     <label for="psw">Password: </label>
-    <input class='inputFormIng' type="password" id='psw' placeholder="Ingrese la contraseña">
+    <input class='inputFormIng' type="password" id='psw' name='psw' placeholder="Ingrese la contraseña">
     <button type="submit">Enviar</button>
     {{#if error}}
         <p>Usuario o clave incorrectos.</p>

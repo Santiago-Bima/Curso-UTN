@@ -13,6 +13,7 @@ var menuRouter=require('./routes/menu');
 var nosotrosRouter = require('./routes/nosotros');
 var contactanosRouter=require('./routes/contactanos');
 var loginRouter=require('./routes/login');
+var registroRouter=require('./routes/register');
 
 var app = express();
 
@@ -33,35 +34,29 @@ app.use(session({
     saveUninitialized: true,
 }))
 
-app.post('/registro', function(req, res){
-    if(req.body.user && req.body.email && req.body.psw ){
-      req.session.user=req.body.user;
-      req.session.email=req.body.email;
-      req.session.psw=req.body.psw;
-      req.session.conocido=true;
-      if(req.body.psw=='Admin123'){
-          req.session.admin=true;
-      }
-    }else{
-      req.session.error1='no se han ingresado todos los datos'
-    }
-    res.redirect('/');
-})
+secured=async(req, res, next)=>{
+  try{
+    console.log(req.session.username);
+    if(req.session.username) next();
+    else res.redirect('/login');
+  }catch(e){
+    console.log(e);
+  }
+}
+
+
 app.post('/salir', function(req,res){
     req.session.destroy()
     res.redirect('/')
 })
 
 app.use('/', indexRouter);
-app.use('/menu', menuRouter);
+app.use('/menu',secured, menuRouter);
 app.use('/contactanos', contactanosRouter);
 app.use('/nosotros', nosotrosRouter);
 
 app.use('/login', loginRouter);
-
-app.get('/registro', function(req, res, next){
-    res.render('registro')
-})
+app.use('/registro', registroRouter);
 
 
 
