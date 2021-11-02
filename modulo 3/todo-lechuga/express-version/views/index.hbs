@@ -9,51 +9,21 @@
         <section class="novedades">
             <h1 class="cursiva" style="margin-left: 50px; text-decoration: underline black;">Novedades</h1>
             {{#if admin}}
-                <i class='bx bxs-message-add addBtn1'></i>
+                <a href="/agregar" style="color: black;"><i class='bx bxs-message-add addBtn1'></i></a>
                 <i class='bx bx-x elimBtn'></i> 
             {{/if}}
             <ul>
-                <li>
-                    <div class="noticia">
-                        <h4>Nuevos platos del dia</h4>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure doloremque rerum excepturi
-                            tempore enim! Autem.
-                        </p>
-                    </div>
-                </li>
-                <li>
-                    <div class="noticia">
-                        <h4>Novedades</h4>
-                        <p>
-                            Le damos la bienvenida a las nuevas notificaciones del sitio.
-                            <br>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, quas.
-                        </p>
-                    </div>
-                </li>
-                <li>
-                    <div class="noticia">
-                        <h4>Nuevo Sitio</h4>
-                        <p>
-                            Bienvenido a Todo Lechuga!! este es un nuevo local vegetariano/vegano, explora las distintas
-                            opciones del menú y avisanos si necesitas algo.
-                        </p>
-                    </div>
-                </li>
+                {{#each novedades}}
+                    <li>
+                        <div class="noticia">
+                                <h4>{{titulo}}</h4>
+                                <p>{{cuerpo}}</p>
+                        </div>
+                    </li>
+                {{/each}}
             </ul>
         </section>
-        <div class='alerta'>
-            <form id='ingresoForm'>
-                <input name='nombre' type="text" placeholder='nombre de la noticia' />
-                <br />
-                <br />
-                <textarea name='contenido' placeholder='escriba el contenido de la noticia'></textarea>
-                <br />
-                <br />
-                <input type="submit" value="postear noticia" />
-            </form>
-        </div>
+        
         <section class="destacados">
             <h1 class="cursiva" style="margin-left: 50px; text-decoration: underline black;">Platos Del Día</h1>
             <di class="productos">

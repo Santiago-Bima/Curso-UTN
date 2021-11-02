@@ -4,18 +4,6 @@
 section{
     margin: 35px 20px;
 }
-.alerta{
-    background-color: steelblue;
-    padding: 15px;
-    position: fixed;
-    right: 200px;
-    z-index: 100;
-    border-radius: 10px;
-    display: none;
-}
-.alerta.activado{
-    display: initial;
-}
 .elim{
     margin-left: 10px;
     display: none;
