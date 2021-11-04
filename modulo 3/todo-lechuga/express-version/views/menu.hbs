@@ -40,7 +40,7 @@
             <h1 class="cursiva" style="margin-left: 50px; text-decoration: underline black;">Platos Del Día</h1>
             {{#if admin}}
                 <div style='position: relative; left: 200px;'>
-                    <i class='bx bxs-message-add addBtn1'></i>
+                    <a href='/newProd'><i style='color: black;' class='bx bxs-message-add addBtn1'></i></a>
                     <i class='bx bx-x elimBtn'></i>
                 </div>
                 <div class='alerta'>
@@ -72,66 +72,20 @@
                     </div> 
             {{/if}}
             <div class="productos">
-                <h2 id="pastas" class="cursiva" style="margin-left: 70px; text-decoration: underline black;">Pastas</h2>
-                <div class="producto">
-                    <img src="/images/lasagna.jfif" alt="comida 1">
-                    <div id="lasagna" class="info">
-                        <h5>Comida 1</h5>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore aliquid provident eligendi
-                            reiciendis culpa placeat, molestias ad laborum accusamus tenetur amet exercitationem
-                            reprehenderit! Ducimus alias tempora ea. A, expedita voluptatum?
-                        </p>
-                    </div>
-                </div>
-                <h2 id="hamburguesas" class="cursiva" style="margin-left: 70px; text-decoration: underline black;">
-                    Hamburguesas</h2>
-                <div class="producto">
-                    <img src="/images/Hamburguesas.jfif" alt="comida 3">
-                    <div id="hamburguesaDeLegumbre" class="info">
-                        <h5>Comida 3</h5>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore aliquid provident eligendi
-                            reiciendis culpa placeat, molestias ad laborum accusamus tenetur amet exercitationem
-                            reprehenderit! Ducimus alias tempora ea. A, expedita voluptatum?
-                        </p>
-                    </div>
-                </div>
-                <h2 id="pizzas" class="cursiva" style="margin-left: 70px; text-decoration: underline black;">Pizzas</h2>
-                <div class="producto">
-                    <img src="/images/Pizza de 4 quesos.jfif" alt="comida 2">
-                    <div class="info" id="pizza4quesos">
-                        <h5>Comida 2</h5>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore aliquid provident eligendi
-                            reiciendis culpa placeat, molestias ad laborum accusamus tenetur amet exercitationem
-                            reprehenderit! Ducimus alias tempora ea. A, expedita voluptatum?
-                        </p>
-                    </div>
-                </div>
-                <h2 class="cursiva" id="otro" style="margin-left: 70px; text-decoration: underline black;">Otro</h2>
-                <div class="producto">
-                    <img src="/images/otros2.jfif" alt="comida 2">
-                    <div class="info">
-                        <h5>Comida 4</h5>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore aliquid provident eligendi
-                            reiciendis culpa placeat, molestias ad laborum accusamus tenetur amet exercitationem
-                            reprehenderit! Ducimus alias tempora ea. A, expedita voluptatum?
-                        </p>
-                    </div>
-                </div>
-                <div class="producto">
-                    <img src="/images/otros1.jfif" alt="comida 1">
-                    <div class="info">
-                        <h5>Comida 5</h5>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore aliquid provident eligendi
-                            reiciendis culpa placeat, molestias ad laborum accusamus tenetur amet exercitationem
-                            reprehenderit! Ducimus alias tempora ea. A, expedita voluptatum?
-                        </p>
-                    </div>
-                </div>
+                {{#each tipos}}
+                    <h2 id={{tipo}} class="cursiva" style="margin-left: 70px; text-decoration: underline black;">{{tipo}}</h2>
+                    {{#each prods}}
+                        {{#if tipo_de_producto==tipo}}
+                            <div class="producto">
+                                <img src={{imagen}} alt={{nombre}}>
+                                <div id={{nombre}} class="info">
+                                    <h5>{{nombre}}</h5>
+                                    <p>{{cuerpo}}</p>
+                                </div>
+                            </div>
+                        {{/if}}
+                    {{/each}}
+                {{/each}}
             </div>
         </section>
         </div>

@@ -19,6 +19,15 @@
         <link href="https://fonts.googleapis.com/css2?family=Style+Script&display=swap" rel="stylesheet"> 
         <!-- iconos -->
         <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+        <script>
+            Handlebars.registerHelper('if_eq', function(a, b, opts) {
+                if (a == b) {
+                    return opts.fn(this);
+                } else {
+                    return opts.inverse(this);
+                }
+            });
+        </script>
     </head>
 
     <body>
