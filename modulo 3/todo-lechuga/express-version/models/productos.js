@@ -12,10 +12,10 @@ async function getProd(){
     return rows;
 }
 
-async function insertProd(titulo, cuerpo){
+async function insertProd(titulo, cuerpo, tipo, precio, imagen, destacado){
     try{
-        var query="INSERT INTO productos (titulo, cuerpo) VALUES (?,?)";
-        var rows=await pool.query(query,[titulo, cuerpo]);
+        var query="INSERT INTO productos (nombre, cuerpo, tipo_de_producto, imagen, precio, destacado) VALUES (?, ?, ?, ?, ?, ?)";
+        var rows=await pool.query(query,[titulo, cuerpo, tipo, imagen, precio, destacado]);
         return rows;
     }catch(e){
         console.log(e);

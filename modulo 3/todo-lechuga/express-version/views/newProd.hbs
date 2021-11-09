@@ -28,7 +28,7 @@
 
 
 <h1 class="cursiva title_registro">Productos</h1>
-<form id='ingresoForm' action="/newProd" method="post" preve>
+<form id='ingresoForm' action="/newProd" method="post" enctype="multipart/form-data">
     <input class='agregarInput' name='nombre' type="text" placeholder='nombre de la noticia' />
     <br />
     <br />
@@ -44,6 +44,8 @@
 			<option value={{tipo}}>{{tipo}}</option>
 		{{/each}}
 	</select>
+    <br/>
+    <input type="number" name="precio" min="1" value="">
     <input class='agregarInput' type="submit" value="postear noticia" style="margin-top: 10px;"/>   
     {{#if error}}
         <h5>{{message}}</h5>

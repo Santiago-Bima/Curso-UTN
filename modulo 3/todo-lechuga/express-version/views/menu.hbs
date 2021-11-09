@@ -9,30 +9,16 @@
             <i class='bx bxs-right-arrow flecha'></i>
         </div>
         <ul>
-            <li class="subindice">
-                <h4><a href="menu#pastas" class="linkprod">Pastas</a></h4>
-                <ul>
-                    <li><a href="#" class="linkprod">Fideos con salsa blanca</a></li>
-                    <li><a href="#" class="linkprod">Ñoquis</a></li>
-                    <li><a href="menu#lasagna" class="linkprod">Lasagna de verdura</a></li>
-                    <li><a href="#" class="linkprod">Capelettinni</a></li>
-                </ul>
-            </li>
-            <li class="subindice">
-                <h4><a href="menu#hamburguesas" class="linkprod">Hamburguesas</a></h4>
-            <li><a href="#" class="linkprod">De berenjena</a></li>
-            <li><a href="menu#hamburguesaDeLegumbre" class="linkprod">De legumbre</a></li>
-            <li><a href="#" class="linkprod">De legumbres con cheddar</a></li>
-            </li>
-            <li class="subindice">
-                <h4><a href="menu#pizzas" class="linkprod">Pizzas</a></h4>
-            <li><a href="#" class="linkprod">Simple</a></li>
-            <li><a href="#" class="linkprod">De tomate</a></li>
-            <li><a href="#" class="linkprod">De 4 quesos</a></li>
-            </li>
-            <li class="subindice">
-                <h4><a href="menu#otro" class="linkprod">Otros</a></h4>
-            </li>
+            {{#each listaTipos}}
+                <li class="subindice">
+                    <h4><a href="menu#{{tipos}}" class="linkprod">{{tipos}}</a></h4>
+                    <ul>
+                        {{#productos}}
+                            <li><a href="menu#{{nombre}}" class="linkprod">{{nombre}}</a></li>
+                        {{/productos}}
+                    </ul>
+                </li>
+            {{/each}}
         </ul>
     </aside>
     <main>
@@ -50,17 +36,9 @@
                             <br/>
                             <select name="tipo"style='marginTop: 15px'>
                                 <option value={''}>Seleccione un tipo de producto</option>
-                                <option value='Pastas'>
-                                    Pastas
-                                </option>
-                                <option value='Hamburguesas'>
-                                    Hamburguesas
-                                </option>
-                                <option value='Pizzas'>
-                                    Pizzas
-                                </option><option value='Otros'>
-                                    Otros
-                                </option>
+                                {{#each listaTipos}}
+                                    <option value="{{tipos}}">{{tipos}}</option>
+                                {{/each}}
                             </select>
                             <br/>
                             <br/>
@@ -72,19 +50,20 @@
                     </div> 
             {{/if}}
             <div class="productos">
-                {{#each tipos}}
-                    <h2 id={{tipo}} class="cursiva" style="margin-left: 70px; text-decoration: underline black;">{{tipo}}</h2>
-                    {{#each prods}}
-                        {{#if tipo_de_producto==tipo}}
+                {{#each listaTipos}}
+                    <div class="tipo">
+                        <h2 id={{tipos}} class="cursiva" style="margin-left: 70px; text-decoration: underline black;">{{tipos}}</h2>
+                        {{#productos}}
                             <div class="producto">
-                                <img src={{imagen}} alt={{nombre}}>
-                                <div id={{nombre}} class="info">
+                                <img src='{{imagen}}' alt='{{nombre}}'>
+                                <div id='{{nombre}}' class="info">
                                     <h5>{{nombre}}</h5>
-                                    <p>{{cuerpo}}</p>
+                                    <p>{{descripcion}}</p>
+                                    <p>Precio: ${{precio}}</p>
                                 </div>
                             </div>
-                        {{/if}}
-                    {{/each}}
+                        {{/productos}}
+                    </div>
                 {{/each}}
             </div>
         </section>
