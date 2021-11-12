@@ -8,13 +8,21 @@ section{
     margin-left: 10px;
     display: none;
 }
-.elimBtn{
+.elimBtn, .editBtn{
     border-radius: 5px;
-    background-color: rgb(238, 97, 97);
     padding: 10px;
     display: none;
     position: relative;
-    left: 15px;
+    top: -8px;
+    color: #333;
+}
+.elimBtn{
+    background-color: rgb(238, 97, 97);
+    left: 270px;
+}
+.editBtn{
+    background-color: rgb(238, 172, 97);
+    left: 185px;
 }
 .addBtn1{
     border-radius: 5px;

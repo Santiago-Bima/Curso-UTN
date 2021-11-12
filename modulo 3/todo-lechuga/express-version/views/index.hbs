@@ -10,14 +10,17 @@
             <h1 class="cursiva" style="margin-left: 50px; text-decoration: underline black;">Novedades</h1>
             {{#if admin}}
                 <a href="/agregar" style="color: black;"><i class='bx bxs-message-add addBtn1'></i></a>
-                <i class='bx bx-x elimBtn'></i> 
             {{/if}}
             <ul>
                 {{#each novedades}}
                     <li>
                         <div class="noticia">
-                                <h4>{{titulo}}</h4>
-                                <p>{{cuerpo}}</p>
+                            <h4>{{titulo}}</h4>
+                            <p>{{cuerpo}}</p>
+                            {{#if ../admin}}
+                                <a href="/deleteNew/{{id}}"><i class='bx bx-x elimBtn'></i></a>
+                                <a href="/editNew/{{id}}"><i class='bx bxs-pencil editBtn'></i></a>
+                            {{/if}}
                         </div>
                     </li>
                 {{/each}}

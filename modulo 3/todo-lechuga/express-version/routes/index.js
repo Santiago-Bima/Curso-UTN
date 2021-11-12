@@ -149,4 +149,46 @@ router.post('/newProd',upload.single('img'), async(req, res, next)=>{
   }
 })
 
+router.get('/deleteNew/:id', async(req, res, next)=>{
+  var id=req.params.id;
+  await novedadesModel.deleteNovedad(id);
+  res.redirect('/');
+})
+
+router.get('/editNew/:id', async(req, res, next)=>{
+  let id=req.params.id;
+  let noticia= await novedadesModel.getNovedadById(id);
+  res.render('editNew', {
+    layout: 'layout',
+    title: 'Todo Lechuga',
+    username: req.session.username,
+    conocido: req.session.conocido,
+    admin: req.session.admin,
+    noticia
+  });
+})
+
+router.post('/editNew', async(req, res, next)=>{
+  try{
+    let obj={
+      titulo: req.body.nombre,
+      cuerpo: req.body.contenido
+    }
+
+    await novedadesModel.updateNovedad(obj, req.body.id);
+    res.redirect('/');
+  }catch(error){
+    console.log(error);
+    res.render('editNew', {
+      layout: 'layout',
+      title: 'Todo Lechuga',
+      username: req.session.username,
+      conocido: req.session.conocido,
+      admin: req.session.admin,
+      error: true, message: 'no se cargó la novedad'
+    })
+  }
+})
+
+
 module.exports = router;
