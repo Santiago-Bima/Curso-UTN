@@ -1,3 +1,4 @@
+const { log } = require('debug');
 var express = require('express');
 var router = express.Router();
 var prodModel=require('../models/productos');
@@ -15,7 +16,9 @@ router.get('/', async function(req, res, next){
           descripcion:prod.cuerpo,
           tipo:prod.tipo_de_producto,
           precio:prod.precio,
-          imagen:prod.imagen
+          imagen:prod.imagen,
+          id:prod.id,
+          destacado: prod.destacado
         });
       }
     })

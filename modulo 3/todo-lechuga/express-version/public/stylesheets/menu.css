@@ -40,6 +40,12 @@ section{
     padding: 10px;
     display: none;
 }
+.destacarBtn{
+    border-radius: 5px;
+    background-color: rgb(216, 191, 110);
+    padding: 10px;
+    display: none;
+}
 .addBtn{
     border-radius: 5px;
     background-color: rgb(169, 238, 129);

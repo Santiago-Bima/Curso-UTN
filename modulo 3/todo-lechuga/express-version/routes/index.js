@@ -7,7 +7,6 @@ const mimeTypes=require('mime-types');
 
 secured=async(req, res, next)=>{
   try{
-    console.log(req.session.username);
     if(req.session.username) next();
     else res.redirect('/login');
   }catch(e){
@@ -29,6 +28,7 @@ const upload=multer({storage: storage});
 /* GET home page. */
 router.get('/', async function(req, res, next) {
   var novedades=await novedadesModel.getNovedades();
+  var prods=await prodModel.getProd();
   res.render('index', {
     layout: 'layout',
     title: 'Todo Lechuga',
@@ -36,10 +36,18 @@ router.get('/', async function(req, res, next) {
     conocido: req.session.conocido,
     admin: req.session.admin,
     error1: req.session.error1,
-    novedades
+    novedades,
+    prods
   });
 });
 
+
+
+
+
+
+
+// news
 
 router.get('/agregar', secured, (req, res, next)=>{
   res.render('agregar', {
@@ -51,7 +59,7 @@ router.get('/agregar', secured, (req, res, next)=>{
   });
 })
 
-router.post('/agregar', async(req, res, next)=>{
+router.post('/agregar', secured, async(req, res, next)=>{
   try{
     titulo=req.body.nombre;
     cuerpo=req.body.contenido;
@@ -81,6 +89,57 @@ router.post('/agregar', async(req, res, next)=>{
   }
 })
 
+router.get('/deleteNew/:id', secured, async(req, res, next)=>{
+  var id=req.params.id;
+  await novedadesModel.deleteNovedad(id);
+  res.redirect('/');
+})
+
+router.get('/editNew/:id', secured, async(req, res, next)=>{
+  let id=req.params.id;
+  let noticia= await novedadesModel.getNovedadById(id);
+  res.render('editNew', {
+    layout: 'layout',
+    title: 'Todo Lechuga',
+    username: req.session.username,
+    conocido: req.session.conocido,
+    admin: req.session.admin,
+    noticia
+  });
+})
+
+router.post('/editNew', secured, async(req, res, next)=>{
+  try{
+    let obj={
+      titulo: req.body.nombre,
+      cuerpo: req.body.contenido
+    }
+
+    await novedadesModel.updateNovedad(obj, req.body.id);
+    res.redirect('/');
+  }catch(error){
+    console.log(error);
+    res.render('editNew', {
+      layout: 'layout',
+      title: 'Todo Lechuga',
+      username: req.session.username,
+      conocido: req.session.conocido,
+      admin: req.session.admin,
+      error: true, message: 'no se cargó la novedad'
+    })
+  }
+})
+
+
+
+
+
+
+
+
+
+
+// prods
 router.get('/newProd', secured, async function(req, res, next){
   var tipos=await prodModel.getProdType();
   res.render('newProd', {
@@ -93,7 +152,7 @@ router.get('/newProd', secured, async function(req, res, next){
   });
 })
 
-router.post('/newProd',upload.single('img'), async(req, res, next)=>{
+router.post('/newProd',upload.single('img'), secured, async(req, res, next)=>{
   try{
     titulo=req.body.nombre;
     cuerpo=req.body.contenido;
@@ -149,43 +208,98 @@ router.post('/newProd',upload.single('img'), async(req, res, next)=>{
   }
 })
 
-router.get('/deleteNew/:id', async(req, res, next)=>{
-  var id=req.params.id;
-  await novedadesModel.deleteNovedad(id);
-  res.redirect('/');
-})
-
-router.get('/editNew/:id', async(req, res, next)=>{
-  let id=req.params.id;
-  let noticia= await novedadesModel.getNovedadById(id);
-  res.render('editNew', {
-    layout: 'layout',
-    title: 'Todo Lechuga',
-    username: req.session.username,
-    conocido: req.session.conocido,
-    admin: req.session.admin,
-    noticia
-  });
-})
-
-router.post('/editNew', async(req, res, next)=>{
+router.post('/destacarProd',secured, async function(req, res, next){
   try{
-    let obj={
-      titulo: req.body.nombre,
-      cuerpo: req.body.contenido
-    }
-
-    await novedadesModel.updateNovedad(obj, req.body.id);
-    res.redirect('/');
+    var checks=req.body.check;
+    checks.forEach(async (check) => {
+      await prodModel.destacarProd(check);
+    });
+    res.redirect('/menu');
   }catch(error){
     console.log(error);
-    res.render('editNew', {
+
+    var prods=await prodModel.getProd();
+    var tipos=await prodModel.getProdType();
+    var listaTipos=[];
+    tipos.forEach(tipo => {
+      var coincidenciaTipo=[];
+      prods.forEach(prod =>{
+        if(prod.tipo_de_producto==tipo.tipo){
+          coincidenciaTipo.push({
+            nombre:prod.nombre,
+            descripcion:prod.cuerpo,
+            tipo:prod.tipo_de_producto,
+            precio:prod.precio,
+            imagen:prod.imagen,
+            id:prod.id,
+            destacado: prod.destacado
+          });
+        }
+      })
+      listaTipos.push({tipos:tipo.tipo,productos:coincidenciaTipo});
+    });
+
+    res.render('menu', {
       layout: 'layout',
       title: 'Todo Lechuga',
       username: req.session.username,
       conocido: req.session.conocido,
       admin: req.session.admin,
-      error: true, message: 'no se cargó la novedad'
+      error: true, message: 'no se pudo destacar la novedad',
+      listaTipos
+    })
+  }
+
+});
+
+router.get('/deleteProd/:id', secured, async(req, res, next)=>{
+  var id=req.params.id;
+  await prodModel.deleteProd(id);
+  res.redirect('/menu');
+})
+
+router.get('/editProd/:id', secured, async(req, res, next)=>{
+  let id=req.params.id;
+  let prod= await prodModel.getProdById(id);
+  var tipos=await prodModel.getProdType();
+  res.render('editProd', {
+    layout: 'layout',
+    title: 'Todo Lechuga',
+    username: req.session.username,
+    conocido: req.session.conocido,
+    admin: req.session.admin,
+    prod,
+    tipos
+  });
+})
+
+router.post('/editProd',upload.single('img'), secured, async(req, res, next)=>{
+  try{
+    
+    let img=req.file;
+    console.log(img);
+
+    let obj={
+      nombre: req.body.nombre,
+      cuerpo: req.body.contenido,
+      tipo_de_producto: req.body.tipos,
+      precio: req.body.precio,
+      imagen: '/images/'+img.originalname+'.'+mimeTypes.extension(img.mimetype),
+      destacado: req.body.destacado
+    }
+
+    await prodModel.updateProd(obj, req.body.id);
+    res.redirect('/');
+    
+  }catch(error){
+    console.log(error);
+    res.render('editProd', {
+      layout: 'layout',
+      title: 'Todo Lechuga',
+      username: req.session.username,
+      conocido: req.session.conocido,
+      admin: req.session.admin,
+      error: true, message: 'no se pudo actualizar el producto'
     })
   }
 })

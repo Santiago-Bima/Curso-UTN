@@ -27,25 +27,27 @@
 </style>
 
 
-<h1 class="cursiva title_registro">Productos</h1>
-<form id='ingresoForm' action="/newProd" method="post" enctype="multipart/form-data">
-    <input class='agregarInput' name='nombre' type="text" placeholder='nombre del producto' />
+<h1 class="cursiva title_registro">Editar Producto</h1>
+<form id='ingresoForm' action="/editProd" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="id" value="{{prod.id}}">
+    <input type="hidden" name="destacado" value="{{prod.destacado}}">
+    <input class='agregarInput' name='nombre' type="text" placeholder='nombre del producto' value="{{prod.nombre}}"/>
     <br />
     <br />
-    <textarea class='agregarInput' name='contenido' placeholder='escriba el contenido del producto'></textarea>
+    <textarea class='agregarInput' name='contenido' placeholder='escriba el contenido del producto'>{{prod.cuerpo}}</textarea>
     <br />
     <br />
     <input type="file" name="img" id="img" accept="image/png, image/jpeg, image/jpg" size="20">
     <br />
     <br />
     <select name='tipos'>
-		<option value=" ">Seleccione:</option>
+		<option value="{{prod.tipo_de_producto}}">{{prod.tipo_de_producto}}</option>
 		{{#each tipos}}
 			<option value={{tipo}}>{{tipo}}</option>
 		{{/each}}
 	</select>
     <br/>
-    <input type="number" name="precio" min="1" value="">
+    <input type="number" name="precio" min="1" value="{{prod.precio}}">
     <input class='agregarInput' type="submit" value="postear noticia" style="margin-top: 10px;"/>   
     {{#if error}}
         <h5>{{message}}</h5>

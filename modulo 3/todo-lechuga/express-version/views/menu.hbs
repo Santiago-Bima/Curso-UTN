@@ -3,6 +3,7 @@
         background-color:rgba(140, 172, 150, 0.562);
     }
 </style>
+
     <aside class="menu">
         <h1 class="cursiva" style="margin-left: 50px; text-decoration: underline black;">Menú</h1>
         <div id="flecha">
@@ -22,50 +23,47 @@
         </ul>
     </aside>
     <main>
-        <section class="destacados">
-            <h1 class="cursiva" style="margin-left: 50px; text-decoration: underline black;">Platos Del Día</h1>
-            {{#if admin}}
-                <div style='position: relative; left: 200px;'>
-                    <a href='/newProd'><i style='color: black;' class='bx bxs-message-add addBtn1'></i></a>
-                    <i class='bx bx-x elimBtn'></i>
-                </div>
-                <div class='alerta'>
-                        <form id='ingresoForm'>
-                            <input name='nombre' type="text" placeholder='nombre de la noticia'/>
-                            <br/>
-                            <br/>
-                            <select name="tipo"style='marginTop: 15px'>
-                                <option value={''}>Seleccione un tipo de producto</option>
-                                {{#each listaTipos}}
-                                    <option value="{{tipos}}">{{tipos}}</option>
-                                {{/each}}
-                            </select>
-                            <br/>
-                            <br/>
-                            <textarea name='contenido' placeholder='escriba el contenido de la noticia'></textarea>
-                            <br/>
-                            <br/>
-                            <input type="submit" value="postear noticia" />
-                        </form>
-                    </div> 
-            {{/if}}
-            <div class="productos">
-                {{#each listaTipos}}
-                    <div class="tipo">
-                        <h2 id={{tipos}} class="cursiva" style="margin-left: 70px; text-decoration: underline black;">{{tipos}}</h2>
-                        {{#productos}}
-                            <div class="producto">
-                                <img src='{{imagen}}' alt='{{nombre}}'>
-                                <div id='{{nombre}}' class="info">
-                                    <h5>{{nombre}}</h5>
-                                    <p>{{descripcion}}</p>
-                                    <p>Precio: ${{precio}}</p>
-                                </div>
-                            </div>
-                        {{/productos}}
+        <section>
+            <form method="post" action="destacarProd">
+                <h1 class="cursiva" style="margin-left: 50px; text-decoration: underline black;">Menú</h1>
+                {{#if error}}
+                    {{message}}
+                {{/if}}
+                {{#if admin}}
+                    <div style='position: relative; left: 200px;'>
+                        <a href='/newProd'><i style='color: black;' class='bx bxs-message-add addBtn1'></i></a>
+                        <button type="submit" value="" style="background: transparent; border: none"><i class='bx bxs-star destacarBtn'></i></button>
                     </div>
-                {{/each}}
-            </div>
+                {{/if}}
+                <div class="productos">
+                    {{#each listaTipos}}
+                        <div class="tipo">
+                            <h2 id={{tipos}} class="cursiva" style="margin-left: 70px; text-decoration: underline black;">{{tipos}}</h2>
+                            {{#productos}}
+                                <div class="producto">
+                                    <img src='{{imagen}}' alt='{{nombre}}'>
+                                    <div id='{{nombre}}' class="info">
+                                        <h5>{{nombre}}</h5>
+                                        <p>{{descripcion}}</p>
+                                        <p>Precio: ${{precio}}</p>
+                                    </div>
+                                </div>
+                                {{#if ../../admin}}
+                                    <a href="/deleteProd/{{id}}"><i style="left: 320px !important;position: relative;"class='bx bx-x elimBtn'></i></a>
+                                    <a href="/editProd/{{id}}"><i style="left: 230px !important;position: relative;" class='bx bxs-pencil editBtn'></i></a>
+                                    {{#if destacado}}
+                                        <label for="destacar">Quitar Destacado:</label>
+                                        <input type="checkbox" name="check" value="{{id}}">
+                                    {{else}}
+                                        <label for="destacar">Destacar:</label>
+                                        <input type="checkbox" name="check" value="{{id}}">
+                                    {{/if}}
+                                {{/if}}
+                            {{/productos}}
+                        </div>
+                    {{/each}}
+                </div>
+            </form>
         </section>
         </div>
     </main>
