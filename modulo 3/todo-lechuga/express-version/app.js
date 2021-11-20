@@ -3,7 +3,8 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var session=require('express-session')
+var session=require('express-session');
+var fileUpload=require('express-fileupload');
 
 require('dotenv').config();
 var pool = require('./models/bd');
@@ -44,6 +45,10 @@ secured=async(req, res, next)=>{
   }
 }
 
+app.use(fileUpload({
+  useTempFiles: true,
+  tempFileDir: '/tmp/'
+}));
 
 app.post('/salir', function(req,res){
     req.session.destroy()

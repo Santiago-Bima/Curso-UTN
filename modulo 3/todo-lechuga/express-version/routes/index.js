@@ -4,6 +4,11 @@ var novedadesModel=require('../models/novedades');
 var prodModel=require('../models/productos');
 const multer = require('multer');
 const mimeTypes=require('mime-types');
+var util=require('util');
+var cloudinary = require('cloudinary').v2;
+
+
+const uploader = util.promisify(cloudinary.uploader.upload);
 
 secured=async(req, res, next)=>{
   try{
@@ -14,16 +19,8 @@ secured=async(req, res, next)=>{
   }
 }
 
-const storage = multer.diskStorage({
-  destination:function(req, file, cb){
-    cb(null, './public/images/')
-  },
-  filename: function (req, file, cb) {
-    cb("",file.originalname+ '.'+mimeTypes.extension(file.mimetype));
-  }
-})
- 
-const upload=multer({storage: storage});
+
+
 
 /* GET home page. */
 router.get('/', async function(req, res, next) {
@@ -152,19 +149,33 @@ router.get('/newProd', secured, async function(req, res, next){
   });
 })
 
-router.post('/newProd',upload.single('img'), secured, async(req, res, next)=>{
+router.post('/newProd', secured, async(req, res, next)=>{
   try{
-    titulo=req.body.nombre;
-    cuerpo=req.body.contenido;
-    img=req.file;
-    tipo=req.body.tipos;
-    precio=req.body.precio;
-    if(titulo!='' && cuerpo!='' && img!=null && tipo!='' && precio!=''){
+    var tipos=await prodModel.getProdType();
+    if(req.files && Object.keys(req.files).length > 0){
+      img=req.files.img;
       if(img.mimetype=='image/jpeg' || img.mimetype=='image/png' || img.mimetype=='image/jpg'){
         if(img.size<=1000000){
-          var path='/images/'+img.originalname+'.'+mimeTypes.extension(img.mimetype);
-          await prodModel.insertProd(titulo, cuerpo, tipo, precio, path, false);
-          res.redirect('/menu');
+          var imagen=(await uploader(img.tempFilePath)).public_id;
+          titulo=req.body.nombre;
+          cuerpo=req.body.contenido;
+          tipo=req.body.tipos;
+          precio=req.body.precio;
+          if(titulo!='' && cuerpo!='' && tipo!='' && precio!=''){
+            await prodModel.insertProd(titulo, cuerpo, tipo, precio, imagen, false);
+            res.redirect('/menu');
+          }else{
+            res.render('newProd', {
+              layout: 'layout',
+              title: 'Todo Lechuga',
+              username: req.session.username,
+              conocido: req.session.conocido,
+              admin: req.session.admin,
+              tipos,
+              error: true, message: 'todos los campos son requeridos',
+              tipos
+            })
+          }
         }else{
           res.render('newProd', {
             layout: 'layout',
@@ -172,7 +183,8 @@ router.post('/newProd',upload.single('img'), secured, async(req, res, next)=>{
             username: req.session.username,
             conocido: req.session.conocido,
             admin: req.session.admin,
-            error: true, message: 'la imagen es muy pesada'
+            error: true, message: 'la imagen es muy pesada',
+            tipos
           })
         }
       }else{
@@ -182,7 +194,8 @@ router.post('/newProd',upload.single('img'), secured, async(req, res, next)=>{
           username: req.session.username,
           conocido: req.session.conocido,
           admin: req.session.admin,
-          error: true, message: 'el archivo no es una imagen'
+          error: true, message: 'el archivo no es una imagen',
+          tipos
         })
       }
     }else{
@@ -192,7 +205,8 @@ router.post('/newProd',upload.single('img'), secured, async(req, res, next)=>{
         username: req.session.username,
         conocido: req.session.conocido,
         admin: req.session.admin,
-        error: true, message: 'todos los campos son requeridos'
+        error: true, message: 'se necesita una imagen',
+        tipos
       })
     }
   }catch(error){
@@ -203,7 +217,8 @@ router.post('/newProd',upload.single('img'), secured, async(req, res, next)=>{
       username: req.session.username,
       conocido: req.session.conocido,
       admin: req.session.admin,
-      error: true, message: 'no se cargó la novedad'
+      error: true, message: 'no se cargó la novedad',
+      tipos
     })
   }
 })
@@ -273,7 +288,7 @@ router.get('/editProd/:id', secured, async(req, res, next)=>{
   });
 })
 
-router.post('/editProd',upload.single('img'), secured, async(req, res, next)=>{
+router.post('/editProd', secured, async(req, res, next)=>{
   try{
     
     let img=req.file;
