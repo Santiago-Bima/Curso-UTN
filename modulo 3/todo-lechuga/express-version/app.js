@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session=require('express-session');
 var fileUpload=require('express-fileupload');
+var cors=require('cors');
 
 require('dotenv').config();
 var pool = require('./models/bd');
@@ -15,6 +16,7 @@ var nosotrosRouter = require('./routes/nosotros');
 var contactanosRouter=require('./routes/contactanos');
 var loginRouter=require('./routes/login');
 var registroRouter=require('./routes/register');
+var apiRouter = require('./routes/api');
 
 var app = express();
 
@@ -62,6 +64,8 @@ app.use('/nosotros', nosotrosRouter);
 
 app.use('/login', loginRouter);
 app.use('/registro', registroRouter);
+
+app.use('/api', cors(), apiRouter);
 
 
 

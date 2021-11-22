@@ -22,7 +22,11 @@ router.get('/', async function(req, res, next){
           descripcion:prod.cuerpo,
           tipo:prod.tipo_de_producto,
           precio:prod.precio,
-          imagen: cloudinary.image(prod.imagen),
+          imagen: cloudinary.image(prod.imagen,{
+            width: 200,
+            height: 170,
+            crop: 'fill'
+          }),
           id:prod.id,
           destacado: prod.destacado
         });

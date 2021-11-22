@@ -32,6 +32,16 @@ secured=async(req, res, next)=>{
 router.get('/', async function(req, res, next) {
   var novedades=await novedadesModel.getNovedades();
   var prods=await prodModel.getProd();
+  prods=prods.map(prod=>{
+    const imagen=cloudinary.image(prod.imagen,{
+      width: 200,
+      height: 170,
+      crop: 'fill'
+    });
+    return{
+      ...prod,imagen
+    }
+  })
   res.render('index', {
     layout: 'layout',
     title: 'Todo Lechuga',
