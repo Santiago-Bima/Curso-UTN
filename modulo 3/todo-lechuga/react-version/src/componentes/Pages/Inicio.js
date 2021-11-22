@@ -3,6 +3,8 @@ import './style/Inicio.css'
 import { Link } from 'react-router-dom';
 import './SubComponentes/NewForm.css';
 import PropTypes from 'prop-types';
+import axios from 'axios';
+import NovedadItem from '../novedades/novedades';
 
 export default class Inicio extends Component {
 
@@ -12,10 +14,16 @@ export default class Inicio extends Component {
             isActive: false,
             isActive2: false,
             nombre: "",
-            contenido: ""
+            contenido: "",
+            loading: false,
+            novedades: []
         }
     }
     
+    componentDidMount(){
+    
+    }
+
     onSubmit=(event)=>{
         event.preventDefault();
         this.props.addNew(null, this.state.nombre, this.state.contenido);
