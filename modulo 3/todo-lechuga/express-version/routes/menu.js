@@ -1,6 +1,13 @@
 var express = require('express');
 var router = express.Router();
 var prodModel=require('../models/productos');
+var cloudinary = require('cloudinary').v2;
+cloudinary.config({ 
+  cloud_name: 'dgfa0hopn', 
+  api_key: '434968435276953', 
+  api_secret: 'jkkk_fG8MjEymB4WOP2djyj4xUA',
+  secure: true
+});
 
 router.get('/', async function(req, res, next){
   var prods=await prodModel.getProd();

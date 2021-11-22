@@ -6,9 +6,15 @@ const multer = require('multer');
 const mimeTypes=require('mime-types');
 var util=require('util');
 var cloudinary = require('cloudinary').v2;
-
+cloudinary.config({ 
+  cloud_name: 'dgfa0hopn', 
+  api_key: '434968435276953', 
+  api_secret: 'jkkk_fG8MjEymB4WOP2djyj4xUA',
+  secure: true
+});
 
 const uploader = util.promisify(cloudinary.uploader.upload);
+const destroy=util.promisify(cloudinary.uploader.destroy);
 
 secured=async(req, res, next)=>{
   try{
@@ -290,16 +296,44 @@ router.get('/editProd/:id', secured, async(req, res, next)=>{
 
 router.post('/editProd', secured, async(req, res, next)=>{
   try{
-    
-    let img=req.file;
-    console.log(img);
+    if(req.files && Object.keys(req.files).length > 0){
+      img_prueba=req.files.img;
+      if(img_prueba.mimetype=='image/jpeg' || img_prueba.mimetype=='image/png' || img_prueba.mimetype=='image/jpg'){
+        if(img_prueba.size<=1000000){
+          await(destroy(req.body.img_actual));
+          var img=(await uploader(img_prueba.tempFilePath)).public_id; 
+        }else{
+          res.render('newProd', {
+            layout: 'layout',
+            title: 'Todo Lechuga',
+            username: req.session.username,
+            conocido: req.session.conocido,
+            admin: req.session.admin,
+            error: true, message: 'la imagen es muy pesada',
+            tipos
+          })
+        }
+      }else{
+        res.render('newProd', {
+          layout: 'layout',
+          title: 'Todo Lechuga',
+          username: req.session.username,
+          conocido: req.session.conocido,
+          admin: req.session.admin,
+          error: true, message: 'el archivo no es una imagen',
+          tipos
+        })
+      }
+    }else{
+      var img=req.body.img_actual;
+    }
 
     let obj={
       nombre: req.body.nombre,
       cuerpo: req.body.contenido,
       tipo_de_producto: req.body.tipos,
       precio: req.body.precio,
-      imagen: '/images/'+img.originalname+'.'+mimeTypes.extension(img.mimetype),
+      imagen: img,
       destacado: req.body.destacado
     }
 
