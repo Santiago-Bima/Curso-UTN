@@ -19,10 +19,6 @@ export default class Inicio extends Component {
             novedades: []
         }
     }
-    
-    componentDidMount(){
-    
-    }
 
     onSubmit=(event)=>{
         event.preventDefault();
