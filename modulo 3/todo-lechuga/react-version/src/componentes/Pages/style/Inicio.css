@@ -86,7 +86,7 @@ section{
 .novedades ul{
     padding-left: 10px;
 }
-.novedades ul li{
+.novedades ul li, .productos ul li{
     list-style: none;
 }
 .noticia{

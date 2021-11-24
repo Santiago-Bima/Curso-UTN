@@ -1,34 +1,29 @@
 import React, { Component } from 'react'
-import './style/Inicio.css'
-import { Link } from 'react-router-dom';
-import './SubComponentes/NewForm.css';
-import PropTypes from 'prop-types';
+import './style/Inicio.css';
 import axios from 'axios';
-import NovedadItem from '../novedades/novedades';
+import NovedadItem from '../apiComponents/novedades';
+import ProductoItem from '../apiComponents/productos';
 
 export default class Inicio extends Component {
 
     constructor(props){
         super(props);
         this.state={
-            isActive: false,
-            isActive2: false,
-            nombre: "",
-            contenido: "",
             loading: false,
-            novedades: []
+            novedades: [],
+            productosDestacados: []
         }
     }
 
-    onSubmit=(event)=>{
-        event.preventDefault();
-        this.props.addNew(null, this.state.nombre, this.state.contenido);
-    }
-
-    onChange = event =>{
-        this.setState({
-            [event.target.name]: event.target.value
-        });
+    componentDidMount(){
+        const cargarApiInfo=async()=>{
+            this.setState({loading: true});
+            const res=await axios.get('http://localhost:3001/api/novedades');
+            const res2=await axios.get('http://localhost:3001/api/productos');
+            var filtrado=res2.data.filter(producto=>producto.destacado===1);
+            this.setState({novedades: res.data, loading: false, productosDestacados: filtrado});
+        }
+        cargarApiInfo();
     }
     
     StyleTitle(){
@@ -39,84 +34,32 @@ export default class Inicio extends Component {
     }
 
     render() {
-
-        
-        let activado=()=>{
-            if(this.state.isActive===false){
-                this.setState({isActive: true})
-            }else{
-                this.setState({
-                    isActive: false,
-                    isActive2: false
-                })
-            }
-        }
-
-        let activado2=()=>{
-            let valor= this.state.isActive2
-            this.setState({isActive2: !valor})
-        }
-
+        var noticiasReves=this.state.novedades.reverse();
         return (
             <main>
                 <div className="columnas">
                     <section className="novedades">
                         <h1 className="cursiva"  style={this.StyleTitle()}>Novedades</h1>
-                        <i className={this.state.isActive?'bx bxs-edit-alt edit activado':'bx bxs-edit-alt edit'} onClick={activado}></i>
-                        <i className={this.state.isActive?'bx bxs-message-add addBtn activado':'bx bxs-message-add addBtn'} onClick={activado2}></i>
-                        <i className={this.state.isActive?'bx bx-x elimBtn activado':'bx bx-x elimBtn'} onClick={this.props.dNew}></i>
                         
-                        <ul>
-                            {this.props.news.map(news=>
-                                <div key={news.id}>
-                                    <li>
-                                        <div className='noticia'>
-                                            <h4>{news.nombre}<input className={this.state.isActive?'elim activado':'elim'} type='checkbox' onChange={this.props.chDone.bind(this, news.id)}></input></h4>
-                                            <p>
-                                                {news.contenido}
-                                            </p>
-                                        </div>
-                                    </li>
-                                </div>  
-                            ).reverse()}
-                        </ul>
+                        {this.state.loading ? (<p>Cargando...</p>) : (
+                            <ul>
+                                {noticiasReves.map(novedad => <li><NovedadItem key={novedad.id} titulo={novedad.titulo} cuerpo={novedad.cuerpo}/></li>)}
+                            </ul>
+                            
+                        )}
                     </section>
-                    <div className={this.state.isActive2?'alerta activado': 'alerta'}>
-                        <form id='ingresoForm' onSubmit={this.onSubmit}>
-                            <input name='nombre' type="text" placeholder='nombre de la noticia' onChange={this.onChange} value={this.state.nombre}/>
-                            <br/>
-                            <br/>
-                            <textarea name='contenido' placeholder='escriba el contenido de la noticia' onChange={this.onChange} value={this.state.contenido}></textarea>
-                            <br/>
-                            <br/>
-                            <input type="submit" value="postear noticia" />
-                        </form>
-                    </div>
                     <section className="destacados">
                         <h1 className="cursiva" style={this.StyleTitle()}>Platos Del Día</h1>
                         <div className="productos">
-
-                            {this.props.prods.filter(productos=>productos.destacado===true).map(productosFiltrados=>
-                                <div key={productosFiltrados.id}>
-                                    <div className="producto">
-                                        <Link to='/menu'>
-                                            <img src={'/img/'+productosFiltrados.name+'.jfif'} alt={productosFiltrados.name}/>
-                                            <div className='info'>
-                                                <h5>{productosFiltrados.name}</h5>
-                                                <p>{productosFiltrados.content}</p>
-                                            </div>
-                                        </Link>
-                                    </div>
-                                </div>
-                            )}
+                            <ul>
+                                {this.state.productosDestacados.map(productosFiltrados=>
+                                    <li><ProductoItem key={productosFiltrados.id} nombre={productosFiltrados.nombre} cuerpo={productosFiltrados.cuerpo} imagen={productosFiltrados.imagen} precio={productosFiltrados.precio}/></li>
+                                )}
+                            </ul>
                         </div>
                     </section>
                 </div>
             </main>
         )
     }
-}
-
-Inicio.propTypes={
-    news: PropTypes.array.isRequired
 }
