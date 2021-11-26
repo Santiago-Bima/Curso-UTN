@@ -6,18 +6,18 @@
 <main>
     <div class="col left">
         <h2 class="cursiva" style="margin-left: 50px; text-decoration: underline black;">Contacto Rapido</h2>
-        <form action="" method="" class="form">
+        <form action="/api/contenido" method="post" class="form">
             <p>
-                <input type="text" placeholder="Nombre" />
+                <input name='nombre' type="text" placeholder="Nombre" />
             </p>
             <p>
-                <input type="email" placeholder="Email" />
+                <input name='email' type="email" placeholder="Email" />
             </p>
             <p>
-                <input type="text" placeholder="Tél:" />
+                <input name='telefono' type="text" placeholder="Tél:" />
             </p>
             <p>
-                <textarea id="comentario" placeholder="Algo que decir?"></textarea>
+                <textarea name='mensaje' id="comentario" placeholder="Algo que decir?"></textarea>
             </p>
             <p class="acciones">
                 <input type="submit" value="Enviar" />

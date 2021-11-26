@@ -22,7 +22,6 @@ var app = express();
 
 // view engine setup
 app.set('appName', 'Todo Lechuga')
-app.set('port', 3001)
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
@@ -86,9 +85,9 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.listen(app.get('port'), ()=>{
+app.listen(3001, ()=>{
   console.log(app.get('appName'));
-  console.log('Server on port', app.get('port'));
+  console.log('Server on port', 3001);
 })
 
 module.exports = app;
