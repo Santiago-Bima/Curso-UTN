@@ -1,6 +1,6 @@
 {
   "name": "express-version",
-  "version": "0.0.0",
+  "version": "16.9.1",
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/www"
