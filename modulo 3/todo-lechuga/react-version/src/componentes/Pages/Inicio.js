@@ -18,8 +18,8 @@ export default class Inicio extends Component {
     componentDidMount(){
         const cargarApiInfo=async()=>{
             this.setState({loading: true});
-            const res=await axios.get('http://localhost:3001/api/novedades');
-            const res2=await axios.get('http://localhost:3001/api/productos');
+            const res=await axios.get(`${process.env.REACT_APP_API_URL}/api/novedades`);
+            const res2=await axios.get(`${process.env.REACT_APP_API_URL}/api/productos`);
             var filtrado=res2.data.filter(producto=>producto.destacado===1);
             this.setState({novedades: res.data, loading: false, productosDestacados: filtrado});
         }

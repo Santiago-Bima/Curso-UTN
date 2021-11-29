@@ -28,7 +28,7 @@ export default function Contactanos(){
         e.preventDefault();
         setMsg('');
         setSending(true);
-        const res= await axios.post('http://localhost:3001/api/contacto', formData);
+        const res= await axios.post(`${process.env.REACT_APP_API_URL}/api/contacto`, formData);
         setSending(false);
         setMsg(res.data.message);
         if(res.data.error===false){
