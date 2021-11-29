@@ -18,8 +18,8 @@ export default class Menu extends Component {
     componentDidMount(){
         const cargarApiInfo=async()=>{
             this.setState({loading: true});
-            const res=await axios.get('http://localhost:3001/api/productos');
-            const res2=await axios.get('http://localhost:3001/api/tipos');
+            const res=await axios.get(`${process.env.REACT_APP_API_URL}/api/productos`);
+            const res2=await axios.get(`${process.env.REACT_APP_API_URL}/api/tipos`);
             this.setState({loading: false, productos: res.data, tipos: res2.data});
         }
         cargarApiInfo();
